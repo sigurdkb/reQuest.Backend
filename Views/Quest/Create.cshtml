@@ -1,0 +1,40 @@
+@model QuestCreateViewModel 
+@{ ViewBag.Title = "Create reQuest"; }
+<div>
+    <h1>@ViewBag.Title</h1>
+    <div>
+        <form class="form-horizontal" method="POST" asp-antiforgery="true">
+            <div class="form-group">
+                <label class="col-sm-2 control-label" asp-for="Title"></label>
+                <input class="form-control" asp-for="Title" placeholder="Enter Title" />
+                <span asp-validation-for="Title"></span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" asp-for="Timeout"></label>
+                <select class="form-control" asp-for="Timeout" asp-items="Model.AllTimeouts">
+                    <option>Set Timeout</option>
+                </select>
+
+                <span asp-validation-for="Timeout"></span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" asp-for="TopicId"></label>
+                <select class="form-control" asp-for="TopicId" asp-items="Model.AllTopics">
+                    <option>Select Topic</option>
+                </select>
+                <span asp-validation-for="TopicId"></span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" asp-for="Description"></label>
+                <textarea class="form-control" asp-for="Description" placeholder="Describe the reQuest"> </textarea>
+                <span asp-validation-for="Description"></span>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2">
+                    <button class="btn btn-primary" type="submit">Post reQuest</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>

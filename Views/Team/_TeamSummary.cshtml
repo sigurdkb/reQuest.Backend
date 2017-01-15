@@ -1,0 +1,16 @@
+@model TeamViewModel
+
+<section class="panel panel-default">
+    <h3 class="panel-heading">@Model.Name (@Model.Score)</h3>
+    <div class="panel-body">
+        Members:
+        <ul>
+        @foreach (var player in Model.Players)
+        {
+            <li>@player.Name</li>
+        }
+        </ul>
+    </div>
+    <div class="panel-footer">
+    </div>
+</section>

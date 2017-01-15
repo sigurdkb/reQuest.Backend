@@ -1,0 +1,135 @@
+[{
+    "parent": "fc:org:uia.no",
+    "id": "fc:fs:fs:emne:uia.no:DAT219:G",
+    "url": "http://www.uia.no/studieplaner/topic/DAT219-G",
+    "displayName": "Internettjenester",
+    "type": "fc:fs:emne",
+    "membership": {
+        "active": true,
+        "basic": "member",
+        "displayName": "Student",
+        "subjectRelations": "undervisning",
+        "fsroles": ["STUDENT"],
+        "notAfter": "2016-08-14T22:00:00Z"
+    }
+}, {
+    "parent": "fc:org:uia.no",
+    "id": "fc:fs:fs:emne:uia.no:SV-503:1",
+    "url": "http://www.uia.no/studieplaner/topic/SV-503-1",
+    "displayName": "E-Teaching ll - E-course Development and Implementation",
+    "type": "fc:fs:emne",
+    "membership": {
+        "active": true,
+        "basic": "member",
+        "displayName": "Student",
+        "subjectRelations": "undervisning",
+        "fsroles": ["STUDENT"],
+        "notAfter": "2016-08-14T22:00:00Z"
+    }
+}, {
+    "parent": "fc:org:uia.no",
+    "id": "fc:fs:fs:emne:uia.no:MM-402:G",
+    "url": "http://www.uia.no/studieplaner/topic/MM-402-G",
+    "displayName": "Mobile Learning for Education",
+    "type": "fc:fs:emne",
+    "membership": {
+        "active": true,
+        "basic": "member",
+        "displayName": "Student",
+        "subjectRelations": "undervisning",
+        "fsroles": ["STUDENT"],
+        "notAfter": "2015-12-14T23:00:00Z"
+    }
+}, {
+    "parent": "fc:org:uia.no",
+    "id": "fc:fs:fs:emne:uia.no:MM-403:G",
+    "url": "http://www.uia.no/studieplaner/topic/MM-403-G",
+    "displayName": "Interaction Design",
+    "type": "fc:fs:emne",
+    "membership": {
+        "active": true,
+        "basic": "member",
+        "displayName": "Student",
+        "subjectRelations": null,
+        "fsroles": ["STUDENT"],
+        "notAfter": "0001-01-01T00:00:00"
+    }
+}, {
+    "parent": "fc:org:uia.no",
+    "id": "fc:fs:fs:emne:uia.no:SV-408:1",
+    "url": "http://www.uia.no/studieplaner/topic/SV-408-1",
+    "displayName": "E-Teaching 1 - The International Online Tutor Course",
+    "type": "fc:fs:emne",
+    "membership": {
+        "active": true,
+        "basic": "member",
+        "displayName": "Student",
+        "subjectRelations": "undervisning",
+        "fsroles": ["STUDENT"],
+        "notAfter": "2015-12-14T23:00:00Z"
+    }
+}, {
+    "parent": "fc:org:uia.no",
+    "id": "fc:fs:fs:emne:uia.no:MM-503:G",
+    "url": "http://www.uia.no/studieplaner/topic/MM-503-G",
+    "displayName": "Project",
+    "type": "fc:fs:emne",
+    "membership": {
+        "active": true,
+        "basic": "member",
+        "displayName": "Student",
+        "subjectRelations": null,
+        "fsroles": ["STUDENT"],
+        "notAfter": "0001-01-01T00:00:00"
+    }
+}, {
+    "parent": "fc:org:uia.no",
+    "id": "fc:fs:fs:emne:uia.no:MM-500:G",
+    "url": "http://www.uia.no/studieplaner/topic/MM-500-G",
+    "displayName": "Master's Thesis",
+    "type": "fc:fs:emne",
+    "membership": {
+        "active": true,
+        "basic": "member",
+        "displayName": "Student",
+        "subjectRelations": null,
+        "fsroles": ["STUDENT"],
+        "notAfter": "0001-01-01T00:00:00"
+    }
+}, {
+    "parent": "fc:org:uia.no",
+    "id": "fc:fs:fs:emne:uia.no:MM-501:G",
+    "url": "http://www.uia.no/studieplaner/topic/MM-501-G",
+    "displayName": "E-learning and games",
+    "type": "fc:fs:emne",
+    "membership": {
+        "active": true,
+        "basic": "member",
+        "displayName": "Student",
+        "subjectRelations": "undervisning",
+        "fsroles": ["STUDENT"],
+        "notAfter": "2016-12-14T23:00:00Z"
+    }
+}, {
+    "parent": "fc:org:uia.no",
+    "id": "fc:fs:fs:emne:uia.no:IKT411:G",
+    "url": "http://old.uia.no/no/content/view/full/324699/(emne08)/IKT411/(versjon)/G",
+    "displayName": "Advanced Seminar",
+    "type": "fc:fs:emne",
+    "membership": {
+        "active": false,
+        "basic": "member",
+        "displayName": "Student",
+        "subjectRelations": "undervisning",
+        "fsroles": ["STUDENT"],
+        "notAfter": "2012-08-14T22:00:00Z"
+    }
+}]
+
+{
+    "access_token": "74b4b8d8-4122-4160-bc12-cddfe5538c54",
+    "token_type": "Bearer",
+    "expires_in": 18734,
+    "scope": "email groups openid profile userid userid-feide",
+    "id_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXV0aC5kYXRhcG9ydGVuLm5vIiwiYXVkIjoiN2E3MWU3ZmUtMTFkNS00NTJhLWE2NmItYjdjZmE4Yjg0OWFiIiwic3ViIjoiODRmNjkwNDktN2FlOC00NmM1LWI3MjQtMWJjZjBjZDYxMWRkIiwiaWF0IjoxNDgzMjcyMTA4LCJleHAiOjE0ODMyNzU3MDgsImF1dGhfdGltZSI6MTQ4MzI2MjA0MX0.ozirm3yKJaP_iYnoaHrQDe4MjNniow3V2aKQmQkl1vHCIfgOhOUdfkswBK3aBadYZP93rs-JDKKMCfTNe83swQNiEVSdtUZEd547q0OVwYn5Zc4caheu5cmAbLJ9O-xr1RWY0JiFhp2x99X2HNF2MrDtaYtBxd-7O8YbhyDlGlPtmqFd3uFnsSTkeNTi2ddIH8hXDfV-SNCGIlScLPewGcCPzIR9DBtMhNAYMdIPWIuPZtKvfXJRLhQhxJSqM37JI4ue1n5NN_Zr8R14kBfM27BSzFogxrjOVj_ZtI_Y-Z_d2PAYCEeIqtNcq6SD3yBmMms3AxWVPoZdgz66wkj6dg"
+}

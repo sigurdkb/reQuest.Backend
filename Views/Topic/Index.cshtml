@@ -1,0 +1,16 @@
+@model TopicsViewModel
+
+@{
+    ViewBag.Title = "Available Topics";
+}
+
+<h1>@ViewBag.Title</h1>
+
+@foreach (var topic in Model.Topics)
+{
+    @Html.Partial("_TopicSummary", topic)
+}
+
+<div>
+    <a class="btn btn-primary" asp-action="Create">Create</a>
+</div>

@@ -1,0 +1,13 @@
+@model Topic
+
+<section class="panel panel-default">
+    <h3 class="panel-heading">@Model.ShortName @Model.DisplayName</h3>
+    <div class="panel-body">
+        Description: @Model.Description
+        Url: <a href="@Model.Url">@Model.Url</a>
+    </div>
+    <div class="panel-footer">
+        <a class="btn btn-primary" asp-action="Details" asp-route-id="@Model.Id">Detail</a>
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    </div>
+</section>

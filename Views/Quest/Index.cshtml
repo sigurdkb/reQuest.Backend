@@ -1,0 +1,16 @@
+@model QuestsViewModel
+
+@{
+    ViewBag.Title = "Available Quests";
+}
+
+<h1>@ViewBag.Title</h1>
+
+@foreach (var quest in Model.Quests)
+{
+    @Html.Partial("_QuestSummary", quest)
+}
+
+<div>
+    <a class="btn btn-primary" asp-action="Create">Create</a>
+</div>

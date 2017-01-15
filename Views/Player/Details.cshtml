@@ -1,0 +1,36 @@
+@model PlayerViewModel
+
+@{
+    ViewBag.Title = "Player Details";
+}
+
+<h1>@ViewBag.Title</h1>
+<section class="panel panel-default">
+    <h3 class="panel-heading">@Model.Name</h3>
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <td><label asp-for="Email"></label></td>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <td><label asp-for="Score"></label></td>
+                <td>@Model.Score</td>
+            </tr>
+            <tr>
+                <td><label asp-for="Team"></label></td>
+                <td>@Model.Team.Name</td>
+            </tr>
+            @foreach (var competency in Model.Competencies)
+            {
+                @Html.Partial("_CompetencyTableRow", competency)
+                <!--<tr>
+                    <td>@competency.Topic.ShortName @competency.Topic.DisplayName</td>
+                    <td>@competency.Score</td>
+                </tr>-->
+            }
+        </table>            
+    </div>
+</section>
+
+

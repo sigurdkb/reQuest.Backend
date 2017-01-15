@@ -1,0 +1,16 @@
+@model IEnumerable<TeamViewModel>
+
+@{
+    ViewBag.Title = "Current Teams";
+}
+
+<h1>@ViewBag.Title</h1>
+
+@foreach (var team in Model)
+{
+    @Html.Partial("_TeamSummary", team)
+}
+
+<div>
+    <a class="btn btn-primary" asp-action="Create">Create</a>
+</div>

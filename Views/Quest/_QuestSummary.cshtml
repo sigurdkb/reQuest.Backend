@@ -1,0 +1,51 @@
+@model Quest
+@switch (Model.State)
+{
+    case QuestState.Active:
+        <text>
+        <section class="panel panel-success">
+        </text>
+        break;
+    case QuestState.TimedOut:
+        <text>
+        <section class="panel panel-warning">
+        </text>
+        break;
+    case QuestState.Done:
+        <text>
+        <section class="panel panel-danger">
+        </text>
+        break;
+    case QuestState.Approved:
+        <text>
+        <section class="panel panel-default">
+        </text>
+        break;
+    default:
+        <text>
+        <section class="panel panel-default">
+        </text>
+        break;
+}
+    <h3 class="panel-heading">@Model.Title</h3>
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <td><label asp-for="Topic.DisplayName"></label></td>
+                <td>@Model.Topic.DisplayName</td>
+            </tr>
+            <tr>
+                <td><label asp-for="Description"></label></td>
+                <td>@Model.Description</td>
+            </tr>
+            <tr>
+                <td><label asp-for="Owner.Name"></label></td>
+                <td>@Model.Owner.Name</td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel-footer">
+        <a class="btn btn-primary" asp-action="Details" asp-route-id="@Model.Id">Detail</a>
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    </div>
+</section>

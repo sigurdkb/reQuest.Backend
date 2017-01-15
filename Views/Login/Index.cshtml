@@ -1,0 +1,34 @@
+@model LoginViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Login";
+}
+<h1>@ViewBag.Title</h1>
+
+<section class="panel panel-default">
+    <h3 class="panel-heading">Enter username:</h3>
+    <div class="panel-body">
+        <form method="post" asp-anti-forgery="true">
+            <div class="text-warning" asp-validation-summary="ModelOnly"></div>
+            <div class="text-center">
+                <img src="~/images/nokkelhull-48px.png" alt="feide logo">
+                <input class="text-right" asp-for="Username" />
+                <label asp-for="Username"></label>
+            </div>
+            <div class="text-center">
+                <span class="text-warning" asp-validation-for="Username"></span>
+            </div>
+            <!--<div>
+                <label asp-for="RememberMe"></label>
+                <input asp-for="RememberMe" />
+                <span asp-validation-for="RememberMe"></span>
+            </div>-->
+            <div class="text-right">
+                <input class="btn btn-success" type="submit" value="Next" />
+            </div>
+            
+        </form>
+    </div>
+</section>
