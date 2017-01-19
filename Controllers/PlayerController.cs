@@ -32,13 +32,6 @@ namespace reQuest.Backend
             var player = _reQuestRepo.GetPlayerFromId(id);
 
             var viewModel = Mapper.Map<PlayerViewModel>(player);
-            // var viewModel = new PlayerViewModel()
-            // {
-            //     Name = model.Name,
-            //     Email = model.Email,
-            //     Team = model.Team,
-            //     Competencies = model.Competencies,
-            // };
 
             return View(viewModel);
         }

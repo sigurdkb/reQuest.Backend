@@ -8,8 +8,8 @@ using reQuest.Backend.Entities;
 namespace reQuest.Backend.Migrations
 {
     [DbContext(typeof(reQuestDbContext))]
-    [Migration("20170114183021_UpdatedQuest")]
-    partial class UpdatedQuest
+    [Migration("20170116081354_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -77,13 +77,15 @@ namespace reQuest.Backend.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("Description");
+
+                    b.Property<DateTime>("Ends");
 
                     b.Property<string>("OwnerId");
 
-                    b.Property<TimeSpan>("Timeout");
-
-                    b.Property<DateTime>("Timestamp");
+                    b.Property<int>("State");
 
                     b.Property<string>("Title");
 

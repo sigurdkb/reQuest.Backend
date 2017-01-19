@@ -46,7 +46,7 @@ namespace reQuest.Backend
 
             AutoMapper.Mapper.Initialize(config => 
             {
-                // config.CreateMap<Entities.Quest, ViewModels.QuestViewModel>().ReverseMap();
+                config.CreateMap<Entities.Quest, ViewModels.QuestViewModel>().ReverseMap();
                 config.CreateMap<Entities.Player, ViewModels.PlayerViewModel>().ReverseMap();
                 config.CreateMap<Entities.Team, ViewModels.TeamViewModel>().ReverseMap();
 

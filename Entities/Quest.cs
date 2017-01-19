@@ -5,12 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace reQuest.Backend.Entities
 {
+	[Flags]
 	public enum QuestState
     {
-		Done,
-        Active,
-        TimedOut,
-		Approved
+		None = 0,
+		Done = 1,
+        Active = 2,
+        TimedOut = 4,
+		Approved = 8
         
     };
 
@@ -46,13 +48,13 @@ namespace reQuest.Backend.Entities
 		/// Gets or sets the timestamp
 		/// </summary>
 		/// <value>The timestamp of the creation of this quest.</value>
-        public DateTime Timestamp { get; set; }
+        public DateTime Created { get; set; }
 
 		/// <summary>
-		/// Gets or sets the timeout
+		/// Gets or sets the end time
 		/// </summary>
-		/// <value>The time remaining to access this quest.</value>
-        public TimeSpan Timeout { get; set; }
+		/// <value>The timestamp of the end of life of this quest.</value>
+        public DateTime Ends { get; set; }
 
 		/// <summary>
 		/// Gets or sets the activeplayers

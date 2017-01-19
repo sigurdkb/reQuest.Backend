@@ -68,7 +68,8 @@ namespace reQuest.Backend
                     ExternalId = jsonUserinfo.User.UserId,
                     Username = jsonUserinfo.User.UserId_Sec.Find(s => s.Contains("feide")).Split(':')[1],
                     Name = jsonUserinfo.User.Name,
-                    Email = jsonUserinfo.User.Email
+                    Email = jsonUserinfo.User.Email,
+                    Team = _reQuestRepo.GetRandomTeam()
                 };
 
                 _reQuestRepo.AddPlayer(player);
@@ -88,7 +89,7 @@ namespace reQuest.Backend
                         {
                             ExternalId = topicGroup.Id,
                             ShortName = topicGroup.Id.Split(':')[5],
-                            DisplayName = topicGroup.DisplayName,
+                            DisplayName = $"{topicGroup.Id.Split(':')[5]} {topicGroup.DisplayName}",
                             Url = topicGroup.Url
                         };
                         _reQuestRepo.AddTopic(topic);

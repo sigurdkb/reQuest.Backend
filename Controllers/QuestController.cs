@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -24,14 +25,19 @@ namespace reQuest.Backend.Controllers
 
         // GET: /quest/
         [HttpGet()]
-        [AllowAnonymous]
         public IActionResult Index()
         {
-            var viewModel = new QuestsViewModel()
+            var id = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var currentPlayer = _repository.GetPlayerFromId(id);
+
+            var quests = _repository.GetPlayerQuests(currentPlayer);
+            var viewModel = Mapper.Map<IEnumerable<QuestViewModel>>(quests);
+
+            //TODO: Implement in custom automapper value resolver https://github.com/AutoMapper/AutoMapper/wiki/Custom-value-resolvers
+            foreach (var questView in viewModel)
             {
-                Quests = _repository.GetQuests().OrderBy(q => q.State),
-                Now = System.DateTime.UtcNow
-            };
+                questView.IsOwner = questView.Owner == currentPlayer;
+            }
 
             return View(viewModel);
         }
@@ -70,8 +76,8 @@ namespace reQuest.Backend.Controllers
                 {
                     Title = viewModel.Title,
                     Description = viewModel.Description,
-                    Timestamp = System.DateTime.UtcNow,
-                    Timeout = viewModel.Timeout,
+                    Created = System.DateTime.UtcNow,
+                    Ends = System.DateTime.UtcNow.Add(viewModel.Timeout),
                     Topic = _repository.GetTopicFromId(viewModel.TopicId),
                     Owner = _repository.GetPlayerFromId(playerId)
                 };
@@ -113,7 +119,7 @@ namespace reQuest.Backend.Controllers
                 selectListItems.Add(new SelectListItem() 
                 { 
                     Value = topic.Id, 
-                    Text = $"{topic.ShortName} {topic.DisplayName}"
+                    Text = topic.DisplayName
                 });
             }
             return selectListItems;

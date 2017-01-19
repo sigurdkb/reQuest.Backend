@@ -43,6 +43,7 @@ namespace reQuest.Backend.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
+                    Active = table.Column<bool>(nullable: false),
                     PlayerId = table.Column<string>(nullable: true),
                     Score = table.Column<double>(nullable: false),
                     TopicId = table.Column<string>(nullable: true)
@@ -63,9 +64,11 @@ namespace reQuest.Backend.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
+                    Ends = table.Column<DateTime>(nullable: false),
                     OwnerId = table.Column<string>(nullable: true),
-                    Timeout = table.Column<TimeSpan>(nullable: false),
+                    State = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     TopicId = table.Column<string>(nullable: true),
                     WinnerId = table.Column<string>(nullable: true)

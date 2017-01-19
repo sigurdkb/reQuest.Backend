@@ -1,33 +1,51 @@
-@model Quest
+@model QuestViewModel
 @switch (Model.State)
 {
     case QuestState.Active:
         <text>
         <section class="panel panel-success">
+            <div class="panel-heading">
+                <h3>@Model.Title</h3>
+            </div>
         </text>
         break;
     case QuestState.TimedOut:
         <text>
         <section class="panel panel-warning">
+            <div class="panel-heading">
+                <h3>@Model.Title</h3>
+                <span class="text-muted text-right">Timed out</span>
+            </div>
         </text>
         break;
     case QuestState.Done:
         <text>
         <section class="panel panel-danger">
+            <div class="panel-heading">
+                <h3>@Model.Title</h3> 
+                <span class="text-muted text-right">Needs approval</span>
+            </div>
         </text>
         break;
     case QuestState.Approved:
         <text>
         <section class="panel panel-default">
+            <div class="panel-heading">
+                <h3>@Model.Title</h3>
+                <span class="text-muted text-right">Archived</span>
+            </div>
         </text>
         break;
     default:
         <text>
         <section class="panel panel-default">
+            <div class="panel-heading">
+                <h3>@Model.Title</h3>
+                <span class="text-muted text-right">No idea</span>
+            </div>
         </text>
         break;
 }
-    <h3 class="panel-heading">@Model.Title</h3>
     <div class="panel-body">
         <table class="table">
             <tr>
@@ -45,7 +63,49 @@
         </table>
     </div>
     <div class="panel-footer">
-        <a class="btn btn-primary" asp-action="Details" asp-route-id="@Model.Id">Detail</a>
-        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        <a class="btn btn-primary" asp-action="Details" asp-route-id="@Model.Id">Details</a>
+        @switch (Model.State)
+        {
+            case QuestState.Active:
+                @if (Model.IsOwner)
+                {
+                    <text>
+                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                    </text>
+                } 
+                else
+                {
+                    <text>
+                        <a class="btn btn-primary" asp-action="Take" asp-route-id="@Model.Id">Take</a>
+                    </text>
+                }
+                break;
+            case QuestState.TimedOut:
+                @if (Model.IsOwner)
+                {
+                    <text>
+                        <a class="btn btn-primary" asp-action="Reactivate" asp-route-id="@Model.Id">Reactivate</a>
+                    </text>
+                } 
+                break;
+            case QuestState.Done:
+                @if (Model.IsOwner)
+                {
+                    <text>
+                        <a class="btn btn-primary" asp-action="Approve" asp-route-id="@Model.Id">Approve</a>
+                    </text>
+                } 
+                break;
+            case QuestState.Approved:
+                <text>
+                </text>
+                break;
+            default:
+                <text>
+                </text>
+                break;
+        }
+
+        
     </div>
 </section>

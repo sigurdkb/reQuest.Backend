@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using reQuest.Backend.Services;
-using reQuest.Backend.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,10 +19,9 @@ namespace reQuest.Backend.Controllers
         [HttpGet()]
         public IActionResult Index()
         {
-            var model = new TopicsViewModel();
-            model.Topics = _repository.GetTopics();
+            var topics = _repository.GetTopics();
 
-            return View(model);
+            return View(topics);
         }
     }
 }

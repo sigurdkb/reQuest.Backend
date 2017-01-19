@@ -1,4 +1,4 @@
-@model QuestsViewModel
+@model IEnumerable<QuestViewModel>
 
 @{
     ViewBag.Title = "Available Quests";
@@ -6,7 +6,7 @@
 
 <h1>@ViewBag.Title</h1>
 
-@foreach (var quest in Model.Quests)
+@foreach (var quest in Model)
 {
     @Html.Partial("_QuestSummary", quest)
 }

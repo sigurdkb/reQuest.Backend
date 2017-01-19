@@ -32,6 +32,12 @@ namespace reQuest.Backend.Services
                 .ThenInclude(p => p.Competencies);
         }
 
+        //TODO: Randomize team assignment
+        public Team GetRandomTeam()
+        {
+            return _context.Teams.FirstOrDefault();
+        }
+
         public bool PlayerExists(string externalId)
         {
             return _context.Players.Any(p => p.ExternalId == externalId);
@@ -75,13 +81,30 @@ namespace reQuest.Backend.Services
                     .ThenInclude(c => c.Topic)
                 .SingleOrDefault(p => p.Id == id);
         }
-
-        public IEnumerable<Quest> GetQuests()
-        {
+        /// <summary>
+        /// Retrieves a list of quests filtered by state
+        /// </summary>
+        /// <param name="stateFilter">Flag enumeration filter, default include all states</param>
+        /// <returns></returns>
+        public IEnumerable<Quest> GetQuests(QuestState stateFilter = (QuestState.Active | QuestState.Done | QuestState.TimedOut | QuestState.Approved))
+        {            
             return _context.Quests
                 .Include(q => q.Topic)
-                .Include(q => q.Owner);
+                .Include(q => q.Owner)
+                .Where(q => q.State == (q.State & stateFilter));
         }
+        
+        public IEnumerable<Quest> GetPlayerQuests(Player player)
+        {
+            var result = _context.Quests
+                .Include(q => q.Topic)
+                .Include(q => q.Owner)
+                // Get all quests where either QuestState is Active or QuestState is anything but Active and the player is the owner
+                .Where(q => q.State == QuestState.Active || q.Owner == player);
+
+            return result;
+        }
+        
 
         public Topic GetTopicFromId(string id)
         {

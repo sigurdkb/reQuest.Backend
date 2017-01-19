@@ -1,4 +1,4 @@
-@model TopicsViewModel
+@model IEnumerable<Topic>
 
 @{
     ViewBag.Title = "Available Topics";
@@ -6,7 +6,7 @@
 
 <h1>@ViewBag.Title</h1>
 
-@foreach (var topic in Model.Topics)
+@foreach (var topic in Model)
 {
     @Html.Partial("_TopicSummary", topic)
 }
