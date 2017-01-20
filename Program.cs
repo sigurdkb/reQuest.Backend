@@ -20,11 +20,12 @@ namespace reQuest.Backend
 
             var host = new WebHostBuilder()
                 .UseConfiguration(config)
-                .UseKestrel(options =>
-                {
-                    options.UseHttps(new X509Certificate2("localhost.pfx", "test"));
-                })
-                .UseUrls("https://localhost:5000")
+                .UseKestrel()
+                // .UseKestrel(options =>
+                // {
+                //     options.UseHttps(new X509Certificate2("localhost.pfx", "test"));
+                // })
+                // .UseUrls("https://localhost:5000")
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
