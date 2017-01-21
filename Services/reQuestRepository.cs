@@ -117,6 +117,11 @@ namespace reQuest.Backend.Services
             var result = _context.Quests.Add(quest);
         }
 
+        public Quest GetQuest(string id)
+        {
+            return _context.Quests.SingleOrDefault(q => q.Id == id);
+        }
+
         // public double GetPlayerScore(string id)
         // {
         //     var player = _context.Players

@@ -83,7 +83,10 @@ namespace reQuest.Backend.Controllers
                 };
                 
                 _repository.AddQuest(quest);
-                _repository.Commit();
+                if (!_repository.Commit())
+                {
+                    return StatusCode(500, "Something went wrong when trying to create the reQuest");
+                }
 
                 return RedirectToAction("Index");
             }
@@ -93,6 +96,58 @@ namespace reQuest.Backend.Controllers
 
             return View(viewModel);
         }
+
+        // POST: /quest/approve
+        [HttpPost("approve")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Approve(string id)
+        {
+            if (id == null || id == string.Empty)
+            {
+                return BadRequest();
+            }
+            var quest = _repository.GetQuest(id);
+            if (quest == null)
+            {
+                return NotFound();
+            }
+
+            quest.State = QuestState.Approved;
+
+            if (!_repository.Commit())
+            {
+                return StatusCode(500, "Something went wrong when trying to approve the reQuest");
+            }
+
+            return RedirectToAction("Index");
+        }
+        // POST: /quest/take
+        [HttpPost("take")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Take(string id)
+        {
+            if (id == null || id == string.Empty)
+            {
+                return BadRequest();
+            }
+            var quest = _repository.GetQuest(id);
+            if (quest == null)
+            {
+                return NotFound();
+            }
+
+            var playerId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            quest.Winner = _repository.GetPlayerFromId(playerId);
+            quest.State = QuestState.Done;
+
+            if (!_repository.Commit())
+            {
+                return StatusCode(500, "Something went wrong when trying to take the reQuest");
+            }
+
+            return RedirectToAction("Index");
+        }
+
         
         List<SelectListItem> GetTimeouts()
         {

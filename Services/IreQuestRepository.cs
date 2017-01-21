@@ -20,6 +20,7 @@ namespace reQuest.Backend.Services
         void AddTopic(Topic topic);
         IEnumerable<Quest> GetQuests(QuestState stateFilter = QuestState.Active);
         IEnumerable<Quest> GetPlayerQuests(Player player);
+        Quest GetQuest(string id);
         void AddQuest(Quest quest);
 
     }
