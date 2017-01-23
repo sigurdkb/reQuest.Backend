@@ -148,6 +148,18 @@ namespace reQuest.Backend.Controllers
             return RedirectToAction("Index");
         }
 
+        // Remote field validation of QuestCreateViewModel.TopicId
+        // GET: /quest/create
+        [HttpGet("verifytopicid")]
+        public IActionResult VerifyTopicId(string topicId)
+        {
+            if (!_repository.TopicExists(topicId))
+            {
+                return Json("The chosen topic is not in the list of available topics");
+            }
+        return Json(true);
+        }
+ 
         
         List<SelectListItem> GetTimeouts()
         {

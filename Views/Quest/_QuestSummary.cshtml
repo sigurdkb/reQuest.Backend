@@ -64,47 +64,41 @@
     </div>
     <div class="panel-footer">
         <form class="form-horizontal" method="POST" asp-antiforgery="true">
-            <!--<button class="btn btn-primary" type="submit" asp-action="Details" asp-route-id="@Model.Id">Details</button>-->
-            @switch (Model.State)
+            @if (!Model.IsOwner)
             {
-                case QuestState.Active:
-                    @if (Model.IsOwner)
-                    {
+                <text>
+                    <button class="btn btn-primary" type="submit" asp-action="Take" asp-route-id="@Model.Id">Take</button>
+                </text>
+            }
+            else
+            {
+                <!--<button class="btn btn-primary" type="submit" asp-action="Details" asp-route-id="@Model.Id">Details</button>-->
+                @switch (Model.State)
+                {
+                    case QuestState.Active:
                         <text>
                             <button class="btn btn-primary" type="submit" asp-action="Edit" asp-route-id="@Model.Id">Edit</button>
                         </text>
-                    } 
-                    else
-                    {
-                        <text>
-                            <button class="btn btn-primary" type="submit" asp-action="Take" asp-route-id="@Model.Id">Take</button>
-                        </text>
-                    }
-                    break;
-                case QuestState.TimedOut:
-                    @if (Model.IsOwner)
-                    {
+                        break;
+                    case QuestState.TimedOut:
                         <text>
                             <button class="btn btn-primary" type="submit" asp-action="Reactivate" asp-route-id="@Model.Id">Reactivate</button>
                         </text>
-                    } 
-                    break;
-                case QuestState.Done:
-                    @if (Model.IsOwner)
-                    {
+                        break;
+                    case QuestState.Done:
                         <text>
                             <button class="btn btn-primary" type="submit" asp-action="Approve" asp-route-id="@Model.Id">Approve</button>
                         </text>
-                    } 
-                    break;
-                case QuestState.Approved:
-                    <text>
-                    </text>
-                    break;
-                default:
-                    <text>
-                    </text>
-                    break;
+                        break;
+                    case QuestState.Approved:
+                        <text>
+                        </text>
+                        break;
+                    default:
+                        <text>
+                        </text>
+                        break;
+                }
             }
         </form>
         

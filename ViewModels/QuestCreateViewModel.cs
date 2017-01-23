@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace reQuest.Backend.ViewModels
@@ -19,7 +20,8 @@ namespace reQuest.Backend.ViewModels
         [DataType(DataType.Time, ErrorMessage = "You need to set the timeout")]
         public TimeSpan Timeout { get; set; }
         [Required]
-        [Display(Name = "Topic")]        
+        [Display(Name = "Topic")]
+        [Remote("VerifyTopicId", "Quest")]
 		public string TopicId { get; set; }
         public List<SelectListItem> AllTimeouts { get; set; } = new List<SelectListItem>(); 
         public List<SelectListItem> AllTopics { get; set; } = new List<SelectListItem>();
