@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using reQuest.Backend.Services;
 using reQuest.Backend.ViewModels;
@@ -10,13 +12,14 @@ using reQuest.Backend.ViewModels;
 
 namespace reQuest.Backend
 {
+    [Authorize]
     [Route("player")]
     public class PlayerController : Controller
     {
-        private IreQuestRepository _reQuestRepo;
-        public PlayerController(IreQuestRepository reQuestRepo)
+        private IreQuestRepository _repository;
+        public PlayerController(IreQuestRepository repository)
         {
-            _reQuestRepo = reQuestRepo; 
+            _repository = repository;
         }
         // GET: /<controller>/
         [HttpGet()]
@@ -24,17 +27,52 @@ namespace reQuest.Backend
         {
             return Ok();
         }
-        [Authorize]
         [HttpGet("details")]
         public IActionResult Details()
         {
             var id = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            var player = _reQuestRepo.GetPlayerFromId(id);
+            var player = _repository.GetPlayerFromId(id);
 
             var viewModel = Mapper.Map<PlayerViewModel>(player);
 
+            // Should be done in custom autmapper
+            foreach (var competency in viewModel.Competencies)
+            {
+                competency.TopicDisplayName = player.Competencies.Single(c => c.Id == competency.Id).Topic.DisplayName;
+            }
+
             return View(viewModel);
         }
+
+        // POST: /player/details
+        [HttpPost("details")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Details(PlayerUpdateViewModel viewModel)
+        {
+            if (viewModel == null)
+            {
+                return BadRequest();
+            }
+
+            var id = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var player = _repository.GetPlayerFromId(id);
+
+            // var result = Mapper.Map(viewModel, player);
+
+            foreach (var competency in player.Competencies)
+            {
+                competency.Active = viewModel.Competencies.SingleOrDefault(c => c.Id == competency.Id).Active;
+            }
+
+            if (!_repository.Commit())
+            {
+                return StatusCode(500, "Something went wrong when trying to update the player");
+            }
+
+
+            return RedirectToAction("Details", "Player");
+        }
+
 
         // [HttpGet("register")]
         // public IActionResult Register()

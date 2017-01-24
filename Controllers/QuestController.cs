@@ -39,7 +39,7 @@ namespace reQuest.Backend.Controllers
                 questView.IsOwner = questView.Owner == currentPlayer;
             }
 
-            return View(viewModel);
+            return View(viewModel.OrderBy(q => q.State));
         }
 
         // GET: /quest/create

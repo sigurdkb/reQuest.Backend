@@ -1,8 +1,5 @@
-@model PlayerViewModel
-
-@{
-    ViewBag.Title = "Player Details";
-}
+@model PlayerViewModel 
+@{ ViewBag.Title = "Player Details"; }
 
 <h1>@ViewBag.Title</h1>
 <section class="panel panel-default">
@@ -22,20 +19,22 @@
                     <td><label asp-for="Team"></label></td>
                     <td>@Model.Team.Name</td>
                 </tr>
-                @for (var i = 0; i < Model.Competencies.Count; i++)
-                {
-                    <tr>
-                        <td>    
-                            <input asp-for="@Model.Competencies[i].Id" type="hidden" />
-                            <input asp-for="@Model.Competencies[i].Active" />
-                        </td>
-                        <td>@Model.Competencies[i].Topic.DisplayName</td>
-                        <td>@Model.Competencies[i].Score</td>
-                    </tr>
+                @for (var i = 0; i < Model.Competencies.Count(); i++) {
+                <tr>
+                    <td>
+                        <input asp-for="@Model.Competencies[i].Active" />
+                        <input asp-for="@Model.Competencies[i].Id" type="hidden"/>
+                    </td>
+                    <td>@Model.Competencies[i].TopicDisplayName</td>
+                </tr>
                 }
-            </table>            
+            </table>
+            <div class="form-group">
+                <div class="col-sm-offset-2">
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </div>
+            </div>
+
         </form>
     </div>
 </section>
-
-

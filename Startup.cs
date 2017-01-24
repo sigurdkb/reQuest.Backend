@@ -48,7 +48,10 @@ namespace reQuest.Backend
             {
                 config.CreateMap<Entities.Quest, ViewModels.QuestViewModel>().ReverseMap();
                 config.CreateMap<Entities.Player, ViewModels.PlayerViewModel>().ReverseMap();
+                config.CreateMap<Entities.Player, ViewModels.PlayerUpdateViewModel>().ReverseMap();
                 config.CreateMap<Entities.Team, ViewModels.TeamViewModel>().ReverseMap();
+                config.CreateMap<Entities.Competency, ViewModels.CompetencyViewModel>().ReverseMap();
+                config.CreateMap<Entities.Competency, ViewModels.CompetencyUpdateViewModel>().ReverseMap();
 
 
             });

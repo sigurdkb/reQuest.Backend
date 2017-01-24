@@ -10,7 +10,7 @@ namespace reQuest.Backend.ViewModels
         public string Name { get; set; }
         public string Email { get; set; }
         public Team Team { get; set; }
-        public IEnumerable<Competency> Competencies { get; set; } = new List<Competency>();
+        public List<CompetencyViewModel> Competencies { get; set; } = new List<CompetencyViewModel>();
         public double Score
         {
             get
