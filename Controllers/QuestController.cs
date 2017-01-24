@@ -112,6 +112,8 @@ namespace reQuest.Backend.Controllers
                 return NotFound();
             }
 
+            var winner = _repository.GetPlayerFromId(quest.WinnerId);
+            winner.Competencies.SingleOrDefault(c => c.TopicId == quest.TopicId).Score += 10;
             quest.State = QuestState.Approved;
 
             if (!_repository.Commit())
