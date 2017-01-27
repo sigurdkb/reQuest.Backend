@@ -1,7 +1,7 @@
 @model IEnumerable<Topic>
 
 @{
-    ViewBag.Title = "Available Topics";
+    ViewBag.Title = "Tilgjengelige emner";
 }
 
 <h1>@ViewBag.Title</h1>
@@ -11,6 +11,6 @@
     @Html.Partial("_TopicSummary", topic)
 }
 
-<div>
+<!--<div>
     <a class="btn btn-primary" asp-action="Create">Create</a>
-</div>
+</div>-->

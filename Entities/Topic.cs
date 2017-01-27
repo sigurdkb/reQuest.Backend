@@ -29,12 +29,14 @@ namespace reQuest.Backend.Entities
 		/// Gets or sets the long name.
 		/// </summary>
 		/// <value>The long name of the topic.</value>
+        [Display(Name = "Emne")]
         public string DisplayName { get; set; }
 
 		/// <summary>
 		/// Gets or sets the description.
 		/// </summary>
 		/// <value>A description of the topic.</value>
+        [Display(Name = "Beskrivelse")]
         public string Description { get; set; }
 
 		/// <summary>

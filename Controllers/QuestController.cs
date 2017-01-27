@@ -172,7 +172,7 @@ namespace reQuest.Backend.Controllers
                 selectListItems.Add(new SelectListItem() 
                 { 
                     Value = $"0:{i * 5}", 
-                    Text = $"{i * 5} minutes" 
+                    Text = $"{i * 5} minutter" 
                 });
             }
             return selectListItems;

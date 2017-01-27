@@ -4,8 +4,8 @@ namespace reQuest.Backend.ViewModels
 {
     public class LoginViewModel
     {
-        [Required]
-        [MinLength(4), MaxLength(12)]
+        [Required(ErrorMessage = "Du må oppgi brukernavnet ditt")]
+        [MinLength(4, ErrorMessage = "For kort"), MaxLength(12, ErrorMessage = "For langt")]
         [Display(Name = "@uia.no")]
         public string Username { get; set; }
     }

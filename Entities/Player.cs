@@ -30,6 +30,7 @@ namespace reQuest.Backend.Entities
 		/// Gets or sets the name.
 		/// </summary>
 		/// <value>The players full name.</value>
+        [Display(Name = "Navn")]
 		public string Name { get; set; }
 		/// <summary>
 		/// Gets or sets the email.

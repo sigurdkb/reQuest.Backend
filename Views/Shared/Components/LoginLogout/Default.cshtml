@@ -2,9 +2,9 @@
 @if (User.Identity.IsAuthenticated) 
 {
     <li class="text-info"><a asp-controller="Player" asp-action="Details">@User.Identity.Name</a></li>
-    <li><a asp-controller="Login" asp-action="Logout">Logout</a></li>
+    <li><a asp-controller="Login" asp-action="Logout">Logg ut</a></li>
 } else 
 {
-    <li><a asp-controller="Login">Login</a></li>
+    <li><a asp-controller="Login">Logg inn</a></li>
 }
 </ul>

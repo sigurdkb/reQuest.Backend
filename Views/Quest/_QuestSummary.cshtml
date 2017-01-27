@@ -14,7 +14,7 @@
         <section class="panel panel-warning">
             <div class="panel-heading">
                 <h3>@Model.Title</h3>
-                <span class="text-muted text-right">Timed out</span>
+                <span class="text-muted text-right">Tidsfristen har gått ut</span>
             </div>
         </text>
         break;
@@ -23,7 +23,7 @@
         <section class="panel panel-danger">
             <div class="panel-heading">
                 <h3>@Model.Title</h3> 
-                <span class="text-muted text-right">Needs approval</span>
+                <span class="text-muted text-right">Trenger godkjenning</span>
             </div>
         </text>
         break;
@@ -32,7 +32,7 @@
         <section class="panel panel-default">
             <div class="panel-heading">
                 <h3>@Model.Title</h3>
-                <span class="text-muted text-right">Archived</span>
+                <span class="text-muted text-right">Arkivert</span>
             </div>
         </text>
         break;
@@ -67,7 +67,7 @@
             @if (!Model.IsOwner)
             {
                 <text>
-                    <button class="btn btn-primary" type="submit" asp-action="Take" asp-route-id="@Model.Id">Take</button>
+                    <button class="btn btn-primary" type="submit" asp-action="Take" asp-route-id="@Model.Id">Gi hjelp</button>
                 </text>
             }
             else
@@ -77,17 +77,17 @@
                 {
                     case QuestState.Active:
                         <text>
-                            <button class="btn btn-primary" type="submit" asp-action="Edit" asp-route-id="@Model.Id">Edit</button>
+                            <button class="btn btn-primary" type="submit" asp-action="Delete" asp-route-id="@Model.Id">Slett</button>
                         </text>
                         break;
                     case QuestState.TimedOut:
                         <text>
-                            <button class="btn btn-primary" type="submit" asp-action="Reactivate" asp-route-id="@Model.Id">Reactivate</button>
+                            <button class="btn btn-primary" type="submit" asp-action="Reactivate" asp-route-id="@Model.Id">Reaktiver</button>
                         </text>
                         break;
                     case QuestState.Done:
                         <text>
-                            <button class="btn btn-primary" type="submit" asp-action="Approve" asp-route-id="@Model.Id">Approve</button>
+                            <button class="btn btn-primary" type="submit" asp-action="Approve" asp-route-id="@Model.Id">Godkjenn</button>
                         </text>
                         break;
                     case QuestState.Approved:
