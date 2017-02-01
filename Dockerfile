@@ -8,7 +8,7 @@ RUN ["dotnet", "restore"]
 
 RUN ["dotnet", "build"]
 
-RUN ["dotnet", "ef", "database", "update"]
+RUN ["dotnet", "ef", "database", "update", "--environment", "production"]
 
 EXPOSE 5000/tcp
 
