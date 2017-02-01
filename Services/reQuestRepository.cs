@@ -122,6 +122,11 @@ namespace reQuest.Backend.Services
             return _context.Quests.SingleOrDefault(q => q.Id == id);
         }
 
+        public void DeleteQuest(Quest quest)
+        {
+            var result = _context.Quests.Remove(quest);
+        }
+
         // public double GetPlayerScore(string id)
         // {
         //     var player = _context.Players

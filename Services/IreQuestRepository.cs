@@ -22,6 +22,8 @@ namespace reQuest.Backend.Services
         IEnumerable<Quest> GetPlayerQuests(Player player);
         Quest GetQuest(string id);
         void AddQuest(Quest quest);
+        void DeleteQuest(Quest quest);
+        
 
     }
 }
