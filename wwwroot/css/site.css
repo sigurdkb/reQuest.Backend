@@ -1,6 +1,9 @@
+
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     background-image: url("/images/background.png");
 }
 
@@ -11,6 +14,18 @@ body {
     padding-right: 15px;
 }
 
+.container {
+    padding-top: 15px;    
+}
+
+.panel {
+    display: inline-block;
+    margin: 0px;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 1280px;
+}
+
 .navbar-brand {
     font-size: xx-large;
 }
@@ -19,7 +34,8 @@ body {
 input,
 select,
 textarea {
-    max-width: 280px;
+    width: 100%;
+    max-width: 560px;
 }
 
 /* Carousel */
