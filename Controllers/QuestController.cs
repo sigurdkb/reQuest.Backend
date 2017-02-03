@@ -150,6 +150,31 @@ namespace reQuest.Backend.Controllers
             return RedirectToAction("Index");
         }
 
+        // POST: /quest/take
+        [HttpPost("delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(string id)
+        {
+            if (id == null || id == string.Empty)
+            {
+                return BadRequest();
+            }
+            var quest = _repository.GetQuest(id);
+            if (quest == null)
+            {
+                return NotFound();
+            }
+
+            _repository.DeleteQuest(quest);
+
+            if (!_repository.Commit())
+            {
+                return StatusCode(500, "Something went wrong when trying to delete the reQuest");
+            }
+
+            return RedirectToAction("Index");
+        }
+
         // Remote field validation of QuestCreateViewModel.TopicId
         // GET: /quest/create
         [HttpGet("verifytopicid")]
