@@ -1,4 +1,4 @@
-<ul class="nav navbar-nav">
+<ul class="nav navbar-nav navbar-right">
 @if (User.Identity.IsAuthenticated) 
 {
     <li class="text-info"><a asp-controller="Player" asp-action="Details">@User.Identity.Name</a></li>

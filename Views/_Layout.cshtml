@@ -21,22 +21,26 @@
 </head>
 
 <body>
+
+
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">reQuest
-                    
-                </a>
+                <a class="navbar-brand" href="/">reQuest</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> 
+                </button>
             </div>
-            <div class="nav navbar-nav navbar-left">
+            <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav">
                     <li><a asp-controller="Quest" asp-action="Index">Forespørsler</a></li>
                     <li><a asp-controller="Topic" asp-action="Index">Emner</a></li>
                 </ul>
-             </div>
-            <div class="nav navbar-nav navbar-right">
                 @await Component.InvokeAsync("LoginLogout")
-            </div>
+             </div>           
         </div>
     </nav>
 
@@ -48,6 +52,8 @@
     <script src="/node_modules/jquery/dist/jquery.js"></script>
     <script src="/node_modules/jquery-validation/dist/jquery.validate.js"></script>
     <script src="/node_modules/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="/node_modules/bootstrap/js/collapse.js"></script>
+   
 </body>
 
 </html>
