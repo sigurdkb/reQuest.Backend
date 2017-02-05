@@ -24,7 +24,7 @@ namespace reQuest.Backend.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            var quests = _repository.GetQuests(stateFilter:QuestState.Active | QuestState.Approved);
+            var quests = _repository.GetQuests(stateFilter:QuestState.Active);
             var viewModel = Mapper.Map<IEnumerable<QuestViewModel>>(quests);
 
             return View(viewModel.OrderBy(q => q.Ends));
