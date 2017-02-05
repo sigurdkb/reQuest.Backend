@@ -1,0 +1,38 @@
+@model QuestReactivateViewModel 
+@{ ViewBag.Title = "Reaktiver forespørsel"; }
+<div>
+    <h1>@ViewBag.Title</h1>
+    <div>
+
+        <form class="from-horizontal" method="POST" asp-antiforgery="true">
+            <div class="form-group">
+                <label class="control-label" asp-for="Title"></label>
+                <input class="form-control input-lg" asp-for="Title" placeholder="Oppgi tittel" />
+                <span asp-validation-for="Title"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" asp-for="Timeout"></label>
+                <select class="form-control input-lg" asp-for="Timeout" asp-items="Model.AllTimeouts">
+                    <option>Velg tidsfrist</option>
+                </select>
+                <span asp-validation-for="Timeout"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" asp-for="Topic"></label>
+                <input class="form-control input-lg" disabled asp-for="Topic" />
+                <span asp-validation-for="Topic"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" asp-for="Description"></label>
+                <textarea class="form-control input-lg" asp-for="Description" placeholder="Beskriv problemet"> </textarea>
+                <span asp-validation-for="Description"></span>
+            </div>
+            <div class="form-group">
+                <div>
+                    <button class="btn btn-primary btn-lg" type="submit">Send forespørselen</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>

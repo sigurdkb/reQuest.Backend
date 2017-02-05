@@ -150,7 +150,7 @@ namespace reQuest.Backend.Controllers
             return RedirectToAction("Index");
         }
 
-        // POST: /quest/take
+        // POST: /quest/delete
         [HttpPost("delete")]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(string id)
@@ -170,6 +170,59 @@ namespace reQuest.Backend.Controllers
             if (!_repository.Commit())
             {
                 return StatusCode(500, "Something went wrong when trying to delete the reQuest");
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        // GET: /quest/reactivate
+        [HttpGet("reactivate")]
+        public IActionResult Reactivate(string id)
+        {
+            if (id == null || id == string.Empty)
+            {
+                return BadRequest();
+            }
+
+            var quest = _repository.GetQuest(id);
+            if (quest == null)
+            {
+                return NotFound();
+            }
+            
+            var viewModel = new QuestReactivateViewModel()
+            {
+                Title = quest.Title,
+                Description = quest.Description,
+                Topic = quest.Topic.DisplayName,
+                AllTimeouts = GetTimeouts(),
+            };
+                        
+            return View(viewModel);
+        }
+        // POST: /quest/reactivate
+        [HttpPost("reactivate")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Reactivate(QuestReactivateViewModel viewModel)
+        {
+            if (viewModel == null)
+            {
+                return BadRequest();
+            }
+            var quest = _repository.GetQuest(viewModel.Id);
+            if (quest == null)
+            {
+                return NotFound();
+            }
+
+            quest.Title = viewModel.Title;
+            quest.Description = viewModel.Description;
+            quest.Ends = System.DateTime.UtcNow.Add(viewModel.Timeout);
+            quest.State = QuestState.Active;
+
+            if (!_repository.Commit())
+            {
+                return StatusCode(500, "Something went wrong when trying to reactivate the reQuest");
             }
 
             return RedirectToAction("Index");
