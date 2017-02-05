@@ -197,7 +197,7 @@ ClientBin/
 *.pfx
 *.publishsettings
 node_modules/
-wwwroot/[Ll]ib
+wwwroot/[Ll]ib/
 orleans.codegen.cs
 
 # Since there are multiple workflows, uncomment next line to ignore bower_components

@@ -102,7 +102,7 @@ namespace reQuest.Backend.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Approve(string id)
         {
-            if (id == null || id == string.Empty)
+            if (string.IsNullOrEmpty(id))
             {
                 return BadRequest();
             }
@@ -128,7 +128,7 @@ namespace reQuest.Backend.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Take(string id)
         {
-            if (id == null || id == string.Empty)
+            if (string.IsNullOrEmpty(id))
             {
                 return BadRequest();
             }
@@ -155,7 +155,7 @@ namespace reQuest.Backend.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Delete(string id)
         {
-            if (id == null || id == string.Empty)
+            if (string.IsNullOrEmpty(id))
             {
                 return BadRequest();
             }
@@ -179,7 +179,7 @@ namespace reQuest.Backend.Controllers
         [HttpGet("reactivate")]
         public IActionResult Reactivate(string id)
         {
-            if (id == null || id == string.Empty)
+            if (string.IsNullOrEmpty(id))
             {
                 return BadRequest();
             }
@@ -233,6 +233,11 @@ namespace reQuest.Backend.Controllers
         [HttpGet("verifytopicid")]
         public IActionResult VerifyTopicId(string topicId)
         {
+            if (string.IsNullOrEmpty(topicId))
+            {
+                return BadRequest();
+            }
+            
             if (!_repository.TopicExists(topicId))
             {
                 return Json("The chosen topic is not in the list of available topics");
