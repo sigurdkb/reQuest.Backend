@@ -10,24 +10,28 @@
 <section class="panel panel-default">
     <h3 class="panel-heading">Oppgi brukernavn:</h3>
     <div class="panel-body">
+        
         <form method="post" asp-anti-forgery="true">
             <div class="text-warning" asp-validation-summary="ModelOnly"></div>
-            <div class="text-center">
-                <img src="~/images/nokkelhull-48px.png" alt="feide logo">
-                <input class="text-right" asp-for="Username" />
-                <label asp-for="Username"></label>
-            </div>
-            <div class="text-center">
-                <span class="text-warning" asp-validation-for="Username"></span>
-            </div>
+
+            
+            
+                <div class="feideUser">
+                    <img src="~/images/nokkelhull-48px.png" alt="feide logo">
+                    <input class="form-control input-lg" asp-for="Username" />
+                    <label class="text-left" asp-for="Username"></label>
+                    <span class="text-warning" asp-validation-for="Username"></span>
+                    <input class="btn btn-success btn-lg" type="submit" value="Neste" />
+                </div>
+                
+
+           
             <!--<div>
                 <label asp-for="RememberMe"></label>
                 <input asp-for="RememberMe" />
                 <span asp-validation-for="RememberMe"></span>
             </div>-->
-            <div class="text-right">
-                <input class="btn btn-success" type="submit" value="Neste" />
-            </div>
+            
             
         </form>
     </div>
