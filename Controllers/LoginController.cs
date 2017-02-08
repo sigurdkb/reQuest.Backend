@@ -135,7 +135,8 @@ namespace reQuest.Backend
                       $"?client_id={Startup.Configuration["dataporten:client_id"]}" +
                       $"&redirect_uri={Startup.Configuration["dataporten:redirect_uri"]}" +
                       $"&response_type=code" +
-                      $"&scope=openid+profile+groups+userid+userid-feide+email";
+                      $"&scope=openid+profile+groups+userid+userid-feide+email" +
+                      @"&acresponse={""type"":""saml"",""id"":""https://idp.feide.no"",""subid"":""uia.no""}";
 
                 return Redirect(url);
             }
