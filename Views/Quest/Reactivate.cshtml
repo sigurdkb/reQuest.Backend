@@ -1,5 +1,5 @@
-@model QuestCreateViewModel 
-@{ ViewBag.Title = "Lag ny forespørsel"; }
+@model QuestReactivateViewModel 
+@{ ViewBag.Title = "Reaktiver forespørsel"; }
 
 <div class="container">
     <div class="row">
@@ -22,18 +22,16 @@
                     <label class="col-sm-2 control-label" asp-for="Timeout"></label>
                     <div class="col-sm-10 col-md-8">
                         <select class="form-control input-lg" asp-for="Timeout" asp-items="Model.AllTimeouts">
-                            <option>Velg tidsfrist</option>
-                        </select>
+                        <option>Velg tidsfrist</option>
+                    </select>
                         <span asp-validation-for="Timeout"></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" asp-for="TopicId"></label>
+                    <label class="col-sm-2 control-label" asp-for="Topic"></label>
                     <div class="col-sm-10 col-md-8">
-                        <select class="form-control input-lg" asp-for="TopicId" asp-items="Model.AllTopics">
-                            <option>Velg emne</option>
-                        </select>
-                        <span asp-validation-for="TopicId"></span>
+                        <input class="form-control input-lg" disabled asp-for="Topic" />
+                        <span asp-validation-for="Topic"></span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -45,10 +43,9 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10 col-md-8 col-sm-offset-2">
-                        <button class="btn btn-primary btn-lg" type="submit">Send forespørselen</button>
+                        <button class="btn btn-primary btn-lg" type="submit">Reaktiver</button>
                     </div>
                 </div>
-
             </form>
 
         </div>

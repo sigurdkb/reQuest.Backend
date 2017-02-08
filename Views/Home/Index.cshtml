@@ -1,6 +1,39 @@
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    // ViewBag.Title = "reQuest";
-}
+ @{ ViewBag.Title = "Aktive forespørsler"; } 
+ @model IEnumerable<QuestViewModel>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8">
+            <h1>@ViewBag.Title</h1>
+        </div>
+        <div class="col-xs-4 text-right">
+            <h1>[ @Model.Count() ]</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <section class="panel panel-default">
+                <div class="panel-heading">
+                    <table class="table">
+                        <thead>
+                            <th asp-loc-id="Title">Tittel</th>
+                            <th asp-loc-id="Topic.DisplayName">Emne</th>
+                            <th asp-loc-id="Ends">Tidsfrist</th>
+                        </thead>
+                </div>
+
+                <div class="panel-body">
+                        @foreach (var quest in Model) 
+                        { 
+                            <tr class="@(quest.State == QuestState.Active?"success":"default")">
+                                <td>@quest.Title</td>
+                                <td>@quest.Topic.DisplayName</td>
+                                <td>@quest.Ends</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

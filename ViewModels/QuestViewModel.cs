@@ -11,6 +11,7 @@ namespace reQuest.Backend.ViewModels
         [Display(Name = "Beskrivelse")]
 		public string Description { get; set; }
         public QuestState State { get; set; }
+        [Display(Name = "Tidsfrist")]
         public DateTime Ends { get; set; }
 		public Topic Topic { get; set; }
         public Player Owner { get; set; }

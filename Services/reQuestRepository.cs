@@ -119,7 +119,9 @@ namespace reQuest.Backend.Services
 
         public Quest GetQuest(string id)
         {
-            return _context.Quests.SingleOrDefault(q => q.Id == id);
+            return _context.Quests
+                            .Include(q => q.Topic)
+                            .SingleOrDefault(q => q.Id == id);
         }
 
         public void DeleteQuest(Quest quest)
@@ -127,14 +129,5 @@ namespace reQuest.Backend.Services
             var result = _context.Quests.Remove(quest);
         }
 
-        // public double GetPlayerScore(string id)
-        // {
-        //     var player = _context.Players
-        //         .Include(p => p.Competencies)
-        //         .SingleOrDefault(p => p.Id == id);
-
-        //     return player.Competencies.Sum(c => c.Score);
-
-        // }
     }
 }
