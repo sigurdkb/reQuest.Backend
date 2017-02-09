@@ -136,10 +136,7 @@ namespace reQuest.Backend
                       $"&redirect_uri={Startup.Configuration["dataporten:redirect_uri"]}" +
                       $"&response_type=code" +
                       $"&scope=openid+profile+groups+userid+userid-feide+email" +
-                      System.Net.WebUtility.UrlEncode(@"&acresponse={""type"":""saml"",""id"":""https://idp.feide.no"",""subid"":""uia.no""}");
-
-                // var url2 = @"http://request.uia.no:5000/test&acresponse=" +
-                //     System.Net.WebUtility.UrlEncode(@"{""type"":""saml"",""id"":""https://idp.feide.no"",""subid"":""uia.no""}");
+                      @"&acresponse=%7B""type"":""saml"",""id"":""https://idp.feide.no"",""subid"":""uia.no""%7D";
 
                 return Redirect(url);
             }
