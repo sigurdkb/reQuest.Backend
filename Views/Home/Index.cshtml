@@ -14,6 +14,9 @@
         <div class="col-xs-12">
             <section class="panel panel-default">
                 <div class="panel-heading">
+                    
+                    <canvas class="chart" id="cnv" width="400px" height="400px"></canvas>
+
                     <table class="table">
                         <thead>
                             <th asp-loc-id="Title">Tittel</th>
@@ -31,9 +34,14 @@
                                 <td>@quest.Ends</td>
                             </tr>
                         }
-                    </table>
+                    </table>                   
+
                 </div>
+                
             </section>
         </div>
     </div>
 </div>
+
+
+<script src="~/js/showChart.js"></script>

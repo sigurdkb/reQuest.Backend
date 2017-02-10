@@ -38,14 +38,9 @@ textarea {
     max-width: 560px;
 }*/
 
-.feideUser * {
-    
-    float: left;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    vertical-align: text-bottom;
+.chart {
+    max-width: 500px;
 }
-
 
 /* Carousel */
 .carousel-caption p {
