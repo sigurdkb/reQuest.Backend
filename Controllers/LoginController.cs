@@ -123,7 +123,7 @@ namespace reQuest.Backend
 
 
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Quest");
         }
 
         [HttpPost("")]
