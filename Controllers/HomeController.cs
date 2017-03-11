@@ -23,7 +23,14 @@ namespace reQuest.Backend.Controllers
             var quests = _repository.GetQuests(stateFilter:QuestState.Active);
             var viewModel = Mapper.Map<IEnumerable<QuestViewModel>>(quests);
 
-            return View(viewModel.OrderBy(q => q.Ends));
+            //TODO: Implement in custom automapper value resolver https://github.com/AutoMapper/AutoMapper/wiki/Custom-value-resolvers
+            foreach (var questView in viewModel)
+            {
+                questView.Timeout = quests.SingleOrDefault(q => q.Id == questView.Id).Ends.Subtract(System.DateTime.UtcNow);
+            }
+            
+
+            return View(viewModel.OrderBy(q => q.Timeout));
         }
     }
 }

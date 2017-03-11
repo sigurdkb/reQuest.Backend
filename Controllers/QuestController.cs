@@ -37,6 +37,7 @@ namespace reQuest.Backend.Controllers
             foreach (var questView in viewModel)
             {
                 questView.IsOwner = questView.Owner == currentPlayer;
+                questView.Timeout = quests.SingleOrDefault(q => q.Id == questView.Id).Ends.Subtract(System.DateTime.UtcNow);
             }
 
             return View(viewModel.OrderBy(q => q.State));
