@@ -1,47 +1,46 @@
 @model IEnumerable<QuestViewModel>
-@{ ViewBag.Title = "Aktive forespørsler"; } 
- 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-8">
-            <h1>@ViewBag.Title</h1>
-        </div>
-        <div class="col-xs-4 text-right">
-            <h1>[ @Model.Count() ]</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <section class="panel panel-default">
-                <div class="panel-heading">
-                    
-                    <canvas class="chart" id="cnv" width="400px" height="400px"></canvas>
+@{ ViewBag.Title = "Aktive forespørsler"; }
 
-                    <table class="table">
-                        <thead>
-                            <th asp-loc-id="Title">Tittel</th>
-                            <th asp-loc-id="Topic.DisplayName">Emne</th>
-                            <th asp-loc-id="Ends">Tidsfrist</th>
-                        </thead>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-8">
+                <h1>@ViewBag.Title</h1>
+            </div>
+            <div class="col-xs-4 text-right">
+                <h1>[ @Model.Count() ]</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <section class="panel panel-default">
+                    <div class="panel-heading">
 
-                <div class="panel-body">
-                        @foreach (var quest in Model) 
-                        { 
-                            <tr class="@(quest.State == QuestState.Active?"success":"default")">
-                                <td>@quest.Title</td>
-                                <td>@quest.Topic.DisplayName</td>
-                                <td>@quest.Timeout.ToString("mm") minutter</td>
-                            </tr>
+                        <!--<canvas class="chart" id="cnv" width="400px" height="400px"></canvas>-->
+
+                        <table class="table">
+                            <thead>
+                                <th asp-loc-id="Title">Tittel</th>
+                                <th asp-loc-id="Topic.DisplayName">Emne</th>
+                                <th asp-loc-id="Ends">Tidsfrist</th>
+                            </thead>
+                    </div>
+
+                    <div class="panel-body">
+                        @foreach (var quest in Model) {
+                        <tr class="success">
+                            <td>@quest.Title</td>
+                            <td>@quest.Topic.DisplayName</td>
+                            <td>@quest.Timeout.ToString("mm") minutter</td>
+                        </tr>
                         }
-                    </table>                   
+                        </table>
 
-                </div>
-                
-            </section>
+                    </div>
+
+                </section>
+            </div>
         </div>
     </div>
-</div>
 
 
-<script src="~/js/showChart.js"></script>
+    <script src="~/js/showChart.js"></script>
