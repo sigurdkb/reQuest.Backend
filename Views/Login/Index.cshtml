@@ -8,7 +8,7 @@
             
 
 <section class="panel panel-default">
-    <h3 class="panel-heading"><span><img src="~/images/nokkelhull-48px.png" alt="feide logo"></span> Oppgi brukernavn:</h3>
+    <h3 class="panel-heading">Universitetet i Agder</h3>
     <div class="panel-body">
         
         <form method="post" asp-anti-forgery="true">
@@ -16,7 +16,7 @@
                 
                 <div class="container-fluid">                   
                    
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-xs-9"><input class="form-control" asp-for="Username" /></div>                                          
                         <label class="col-3" asp-for="Username"></label>
                     </div>
@@ -24,10 +24,14 @@
                         <div class="col-xs-12"><span class="text-warning" asp-validation-for="Username"></span></div>
                     </div>
 
-                    <br>
+                    <br>-->
                     
                     <div class="row">
-                        <div class="col-xs-9"><input class="btn btn-success form-control" type="submit" value="Neste" /></div>
+                        <div class="col-xs-12">
+                            <button class="btn btn-lg btn-default col-xs-12" type="submit">
+                                <img src="~/images/nokkelhull-48px.png" alt="feide logo">  Logg inn
+                            </button>
+                        </div>
                     </div> 
 
                 </div>

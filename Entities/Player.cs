@@ -37,7 +37,12 @@ namespace reQuest.Backend.Entities
 		/// </summary>
 		/// <value>The players email adress.</value>
 		public string Email { get; set; }
-
+		/// <summary>
+		/// Gets or sets the nicname.
+		/// </summary>
+		/// <value>The players nicname.</value>
+        [Display(Name = "Kallenavn")]
+		public string Nic { get; set; }
 		/// <summary>
 		/// Gets or sets the competencies.
 		/// </summary>

@@ -9,6 +9,9 @@ namespace reQuest.Backend.ViewModels
     {
         [Display(Name = "Navn")]
         public string Name { get; set; }
+        [Display(Name = "Kallenavn")]
+		public string Nic { get; set; }
+        
         [Display(Name = "Epost")]
         public string Email { get; set; }
         [Display(Name = "Lag")]

@@ -12,12 +12,8 @@
                     <td>@Model.Email</td>
                 </tr>
                 <tr>
-                    <td><label asp-for="Score"></label></td>
-                    <td>@Model.Score</td>
-                </tr>
-                <tr>
-                    <td><label asp-for="Team"></label></td>
-                    <td>@Model.Team.Name</td>
+                    <td><label asp-for="Nic"></label></td>
+                    <td>@Model.Nic</td>
                 </tr>
                 @for (var i = 0; i < Model.Competencies.Count(); i++) {
                 <tr>

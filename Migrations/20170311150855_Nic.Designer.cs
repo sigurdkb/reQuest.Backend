@@ -8,9 +8,10 @@ using reQuest.Backend.Entities;
 namespace reQuest.Backend.Migrations
 {
     [DbContext(typeof(reQuestDbContext))]
-    partial class reQuestDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170311150855_Nic")]
+    partial class Nic
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752");
