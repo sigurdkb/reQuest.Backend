@@ -1,6 +1,6 @@
- @{ ViewBag.Title = "Aktive forespørsler"; } 
- @model IEnumerable<QuestViewModel>
-
+@model IEnumerable<QuestViewModel>
+@{ ViewBag.Title = "Aktive forespørsler"; } 
+ 
 <div class="container">
     <div class="row">
         <div class="col-xs-8">
@@ -31,7 +31,7 @@
                             <tr class="@(quest.State == QuestState.Active?"success":"default")">
                                 <td>@quest.Title</td>
                                 <td>@quest.Topic.DisplayName</td>
-                                <td>@quest.Timeout</td>
+                                <td>@quest.Timeout.ToString("mm") minutter</td>
                             </tr>
                         }
                     </table>                   
