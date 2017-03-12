@@ -42,6 +42,9 @@ namespace reQuest.Backend
                 competency.TopicDisplayName = player.Competencies.Single(c => c.Id == competency.Id).Topic.DisplayName;
             }
 
+            // Temporary verification
+            viewModel.Nic = player.PushToken;
+
             return View(viewModel);
         }
 
@@ -75,7 +78,7 @@ namespace reQuest.Backend
         }
 
         [HttpPost("registerpushtoken")]
-        public IActionResult RegisterPushToken(string pushToken)
+        public IActionResult RegisterPushToken([FromBody] string pushToken)
         {
             if (string.IsNullOrEmpty(pushToken))
             {
