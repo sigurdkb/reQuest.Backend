@@ -44,6 +44,12 @@ namespace reQuest.Backend.Entities
         [Display(Name = "Kallenavn")]
 		public string Nic { get; set; }
 		/// <summary>
+		/// Gets or sets the PushToken.
+		/// </summary>
+		/// <value>The players push token.</value>
+        [Display(Name = "Push Token")]
+		public string PushToken { get; set; }
+		/// <summary>
 		/// Gets or sets the competencies.
 		/// </summary>
 		/// <value>A List of the players competencies.</value>

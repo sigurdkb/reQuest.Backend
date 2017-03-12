@@ -1,25 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Request test</title>
-  </head>
-  <body>
-
-    <h1>reQuest test</h1>
-
-
-    <button id="pushButton">Get Token</button>
-
-    <script>
-
-    window.onerror = function(err) {
-
-      document.appendChild("<p>" + err + "</p>");
-
-    }
-
     function setupWebViewJavascriptBridge(callback) {
 
 
@@ -51,21 +29,14 @@
           responseCallback(data)
       })
 
-      let btn = document.getElementById('pushButton');
-      btn.onclick = function(e) {
-        e.preventDefault()
+    //   let btn = document.getElementById('pushButton');
+    //   btn.onclick = function(e) {
+        // e.preventDefault()
 
         bridge.callHandler('getPushToken', null, function responseCallback(responseData) {
             alert(responseData.token);
         })
-      }
+    //   }
     }
 
      setupWebViewJavascriptBridge(onBridgeReady);
-
-    </script>
-
-  </body>
-
-
-</html>

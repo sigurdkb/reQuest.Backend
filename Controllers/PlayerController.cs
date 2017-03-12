@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -35,7 +36,7 @@ namespace reQuest.Backend
 
             var viewModel = Mapper.Map<PlayerViewModel>(player);
 
-            // Should be done in custom autmapper
+            // Should be done in custom automapper
             foreach (var competency in viewModel.Competencies)
             {
                 competency.TopicDisplayName = player.Competencies.Single(c => c.Id == competency.Id).Topic.DisplayName;
@@ -71,6 +72,32 @@ namespace reQuest.Backend
 
 
             return RedirectToAction("Details", "Player");
+        }
+
+        [HttpPost("registerpushtoken")]
+        public IActionResult RegisterPushToken(string pushToken)
+        {
+            if (string.IsNullOrEmpty(pushToken))
+            {
+                return BadRequest();
+            }
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Json("Push token can only be registereed to authenticated players");
+            }
+
+            var playerId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var player = _repository.GetPlayerFromId(playerId);
+            player.PushToken = pushToken;
+
+            if (!_repository.Commit())
+            {
+                return StatusCode(500, "Something went wrong when trying to update the player");
+            }
+
+                
+            return Ok();
         }
 
 

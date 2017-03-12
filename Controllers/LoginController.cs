@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
@@ -116,7 +117,7 @@ namespace reQuest.Backend
             await HttpContext.Authentication.SignInAsync("reQuestCookie", userPrincipal,
                 new AuthenticationProperties
                 {
-                    ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
+                    ExpiresUtc = DateTime.UtcNow.AddMinutes(60),
                     IsPersistent = false,
                     AllowRefresh = false
                 });
@@ -156,6 +157,7 @@ namespace reQuest.Backend
 
             return RedirectToAction("Index", "Home");
         }
+
 
         // [HttpGet("register")]
         // public IActionResult Register()
