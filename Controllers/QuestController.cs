@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -59,7 +61,7 @@ namespace reQuest.Backend.Controllers
         // POST: /quest/create
         [HttpPost("create")]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(QuestCreateViewModel viewModel)
+        public async Task<IActionResult> Create(QuestCreateViewModel viewModel)
         {
             if (viewModel == null)
             {
@@ -88,6 +90,11 @@ namespace reQuest.Backend.Controllers
                 {
                     return StatusCode(500, "Something went wrong when trying to create the reQuest");
                 }
+
+                // Send notifications
+                var client = new HttpClient();
+                var userinfoResponse = await client.GetAsync($"{Startup.Configuration["pushNotification:serverUrl"]}?token={quest.Owner.PushToken}");
+                //var userinfoResponseBody = await userinfoResponse.Content.ReadAsStringAsync();
 
                 return RedirectToAction("Index");
             }
