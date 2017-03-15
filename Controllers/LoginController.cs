@@ -74,31 +74,35 @@ namespace reQuest.Backend
                 };
 
                 _reQuestRepo.AddPlayer(player);
-            
-                // Import course data.
-                var groupinfoResponse = await client.GetAsync($"{Startup.Configuration["dataporten:groups_api"]}/me/groups?showAll=true");
-                var groupinfoResponseBody = await groupinfoResponse.Content.ReadAsStringAsync();
-                var jsonGroupinfo = JsonConvert.DeserializeObject<List<DataportenGroupDto>>(groupinfoResponseBody);
-
-                var topicGroups = jsonGroupinfo.FindAll(g => g.Type == "fc:fs:emne" && g.Membership.Fsroles.Contains("STUDENT"));
-                foreach (var topicGroup in topicGroups)
-                {
-                    var topic = _reQuestRepo.GetTopicFromExternalId(topicGroup.Id);
-                    if (topic == null)
-                    {
-                        topic = new Topic()
-                        {
-                            ExternalId = topicGroup.Id,
-                            ShortName = topicGroup.Id.Split(':')[5],
-                            DisplayName = $"{topicGroup.Id.Split(':')[5]} {topicGroup.DisplayName}",
-                            Url = topicGroup.Url
-                        };
-                        _reQuestRepo.AddTopic(topic);
-                    }
-                    player.Competencies.Add(new Competency() { Topic = topic, Score = 0.0 });
-                }
-                _reQuestRepo.Commit();
             }
+            
+            // Import course data.
+            var groupinfoResponse = await client.GetAsync($"{Startup.Configuration["dataporten:groups_api"]}/me/groups?showAll=true");
+            var groupinfoResponseBody = await groupinfoResponse.Content.ReadAsStringAsync();
+            var jsonGroupinfo = JsonConvert.DeserializeObject<List<DataportenGroupDto>>(groupinfoResponseBody);
+
+            var topicGroups = jsonGroupinfo.FindAll(g => g.Type == "fc:fs:emne" && g.Membership.Fsroles.Contains("STUDENT"));
+            foreach (var topicGroup in topicGroups)
+            {
+                var topic = _reQuestRepo.GetTopicFromExternalId(topicGroup.Id);
+                if (topic == null)
+                {
+                    topic = new Topic()
+                    {
+                        ExternalId = topicGroup.Id,
+                        ShortName = topicGroup.Id.Split(':')[5],
+                        DisplayName = $"{topicGroup.Id.Split(':')[5]} {topicGroup.DisplayName}",
+                        Url = topicGroup.Url
+                    };
+                    _reQuestRepo.AddTopic(topic);
+                }
+
+                if (!player.Competencies.Any(c => c.Topic == topic))
+                {
+                    player.Competencies.Add(new Competency() { Topic = topic, Score = 0.0 });                 
+                }
+            }
+            _reQuestRepo.Commit();
             
             // Create claims
             var claims = new List<Claim> {

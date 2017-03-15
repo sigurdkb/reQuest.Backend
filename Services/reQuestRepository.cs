@@ -70,7 +70,10 @@ namespace reQuest.Backend.Services
 
         public Player GetPlayerFromExternalId(string externalId)
         {
-            return _context.Players.SingleOrDefault(p => p.ExternalId == externalId);
+            return _context.Players
+                .Include(p => p.Competencies)
+                    .ThenInclude(c => c.Topic)
+                .SingleOrDefault(p => p.ExternalId == externalId);
         }
 
         public Player GetPlayerFromId(string id)
@@ -129,5 +132,10 @@ namespace reQuest.Backend.Services
             var result = _context.Quests.Remove(quest);
         }
 
+        public IEnumerable<Player> GetPlayersWithTopic(Topic topic)
+        {
+            return _context.Players
+                            .Where(p => p.Competencies.Any(c => c.Topic == topic));
+        }
     }
 }

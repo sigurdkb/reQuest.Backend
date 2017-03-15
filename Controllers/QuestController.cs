@@ -93,8 +93,15 @@ namespace reQuest.Backend.Controllers
 
                 // Send notifications
                 var client = new HttpClient();
-                var userinfoResponse = await client.GetAsync($"{Startup.Configuration["pushNotification:serverUrl"]}?token={quest.Owner.PushToken}");
-                //var userinfoResponseBody = await userinfoResponse.Content.ReadAsStringAsync();
+                client.DefaultRequestHeaders.Add("User-Agent", "reQuest/0.1 mobile webview");
+                var playersToNotify = _repository.GetPlayersWithTopic(quest.Topic).ToList();
+                playersToNotify.Remove(quest.Owner);
+                
+                foreach (var player in playersToNotify)
+                {
+                    var userinfoResponse = await client.GetAsync($"{Startup.Configuration["pushNotification:serverUrl"]}?token={player.PushToken}");
+                    // var userinfoResponseBody = await userinfoResponse.Content.ReadAsStringAsync();
+                }
 
                 return RedirectToAction("Index");
             }

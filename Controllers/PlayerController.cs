@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using reQuest.Backend.Services;
 using reQuest.Backend.ViewModels;
@@ -41,6 +38,9 @@ namespace reQuest.Backend
             {
                 competency.TopicDisplayName = player.Competencies.Single(c => c.Id == competency.Id).Topic.DisplayName;
             }
+
+            // Order competencies alpabetically
+            viewModel.Competencies.Sort((x,y) => x.TopicDisplayName.CompareTo(y.TopicDisplayName));
 
             // Temporary verification
             viewModel.Nic = player.PushToken;
@@ -87,7 +87,7 @@ namespace reQuest.Backend
 
             if (!User.Identity.IsAuthenticated)
             {
-                return Json("Push token can only be registereed to authenticated players");
+                return Unauthorized();
             }
 
             var playerId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
@@ -102,6 +102,56 @@ namespace reQuest.Backend
                 
             return Ok();
         }
+
+        // [HttpPost("refreshtopics")]
+        // public async Task<IActionResult> RefreshTopics()
+        // {
+        //     if (!User.Identity.IsAuthenticated)
+        //     {
+        //         return Unauthorized();
+        //     }
+
+        //     // Retrieve player information
+        //     var playerId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+        //     var player = _repository.GetPlayerFromId(playerId);
+        //     var accessToken = User.Claims.FirstOrDefault(c => c.Type == "Access_Token").Value;
+
+        //     var client = new HttpClient();
+        //     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+        //     var groupinfoResponse = await client.GetAsync($"{Startup.Configuration["dataporten:groups_api"]}/me/groups?showAll=true");
+        //     var groupinfoResponseBody = await groupinfoResponse.Content.ReadAsStringAsync();
+        //     var jsonGroupinfo = JsonConvert.DeserializeObject<List<DataportenGroupDto>>(groupinfoResponseBody);
+
+        //     var topicGroups = jsonGroupinfo.FindAll(g => g.Type == "fc:fs:emne" && g.Membership.Fsroles.Contains("STUDENT"));
+        //     if (topicGroups.Count != 0)
+        //     {
+        //         player.Competencies.Clear();
+        //     }
+        //     foreach (var topicGroup in topicGroups)
+        //     {
+        //         var topic = _repository.GetTopicFromExternalId(topicGroup.Id);
+        //         if (topic == null)
+        //         {
+        //             topic = new Topic()
+        //             {
+        //                 ExternalId = topicGroup.Id,
+        //                 ShortName = topicGroup.Id.Split(':')[5],
+        //                 DisplayName = $"{topicGroup.Id.Split(':')[5]} {topicGroup.DisplayName}",
+        //                 Url = topicGroup.Url
+        //             };
+        //             _repository.AddTopic(topic);
+        //         }
+        //         player.Competencies.Add(new Competency() { Topic = topic, Score = 0.0 });
+        //     }
+
+        //     if (!_repository.Commit())
+        //     {
+        //         return StatusCode(500, "Something went wrong when trying to update the player");
+        //     }
+
+                
+        //     return RedirectToAction("Details", "Player");
+        // }
 
 
         // [HttpGet("register")]

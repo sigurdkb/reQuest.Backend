@@ -9,6 +9,7 @@ namespace reQuest.Backend.Services
         IEnumerable<Team> GetTeams();
         Team GetRandomTeam();
         IEnumerable<Player> GetPlayers();
+        IEnumerable<Player> GetPlayersWithTopic(Topic topic);
         Player GetPlayerFromId(string id);
         Player GetPlayerFromExternalId(string externalId);
         bool PlayerExists(string externalId);
@@ -23,7 +24,5 @@ namespace reQuest.Backend.Services
         Quest GetQuest(string id);
         void AddQuest(Quest quest);
         void DeleteQuest(Quest quest);
-        
-
     }
 }
