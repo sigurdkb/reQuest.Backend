@@ -41,8 +41,8 @@ namespace reQuest.Backend.Entities
 		/// Gets or sets the nicname.
 		/// </summary>
 		/// <value>The players nicname.</value>
-        [Display(Name = "Kallenavn")]
-		public string Nic { get; set; }
+        // [Display(Name = "Kallenavn")]
+		// public string Nic { get; set; }
 		/// <summary>
 		/// Gets or sets the PushToken.
 		/// </summary>
