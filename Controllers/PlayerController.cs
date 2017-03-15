@@ -43,7 +43,7 @@ namespace reQuest.Backend
             viewModel.Competencies.Sort((x,y) => x.TopicDisplayName.CompareTo(y.TopicDisplayName));
 
             // Temporary verification
-            viewModel.Nic = player.PushToken;
+            // viewModel.Nic = player.PushToken;
 
             return View(viewModel);
         }
