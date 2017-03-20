@@ -102,8 +102,9 @@ namespace reQuest.Backend.Services
             var result = _context.Quests
                 .Include(q => q.Topic)
                 .Include(q => q.Owner)
+                .Include(q => q.Winner)
                 // Get all quests where either QuestState is Active or QuestState is anything but Active and the player is the owner
-                .Where(q => q.State == QuestState.Active || q.Owner == player);
+                .Where(q => q.State == QuestState.Active || q.Owner == player || q.Winner == player);
 
             return result;
         }

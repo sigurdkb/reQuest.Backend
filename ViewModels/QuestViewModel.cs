@@ -16,5 +16,7 @@ namespace reQuest.Backend.ViewModels
 		public Topic Topic { get; set; }
         public Player Owner { get; set; }
         public bool IsOwner { get; set; }
+        public Player Winner { get; set; }
+        public bool IsWinner { get; set; }
    }
 }

@@ -65,7 +65,7 @@
     </div>
     <div class="panel-footer">
         <form class="form-horizontal" method="POST" asp-antiforgery="true">
-            @if (!Model.IsOwner)
+            @if (!Model.IsOwner && !Model.IsWinner)
             {
                 <text>
                     <button class="btn btn-primary" type="submit" asp-action="Take" asp-route-id="@Model.Id">Gi hjelp</button>
@@ -87,9 +87,12 @@
                         </text>
                         break;
                     case QuestState.Done:
-                        <text>
-                            <button class="btn btn-primary" type="submit" asp-action="Approve" asp-route-id="@Model.Id">Godkjenn</button>
-                        </text>
+                            @if (!Model.IsWinner)
+                            {
+                                <text>
+                                    <button class="btn btn-primary" type="submit" asp-action="Approve" asp-route-id="@Model.Id">Godkjenn</button>
+                                </text>
+                            }
                         break;
                     case QuestState.Approved:
                         <text>

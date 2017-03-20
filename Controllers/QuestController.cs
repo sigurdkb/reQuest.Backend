@@ -39,6 +39,7 @@ namespace reQuest.Backend.Controllers
             foreach (var questView in viewModel)
             {
                 questView.IsOwner = questView.Owner == currentPlayer;
+                questView.IsWinner = questView.Winner == currentPlayer;
                 questView.Timeout = quests.SingleOrDefault(q => q.Id == questView.Id).Ends.Subtract(System.DateTime.UtcNow);
             }
 
@@ -51,7 +52,7 @@ namespace reQuest.Backend.Controllers
         {
             var viewModel = new QuestCreateViewModel()
             {
-                AllTopics = GetTopics(),
+                AllTopics = GetPlayerTopics(),
                 AllTimeouts = GetTimeouts()
             };
                         
@@ -293,6 +294,25 @@ namespace reQuest.Backend.Controllers
                 });
             }
             return selectListItems;
+        }
+
+        List<SelectListItem> GetPlayerTopics()
+        {
+            var selectListItems = new List<SelectListItem>();
+
+            var id = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var player = _repository.GetPlayerFromId(id);
+
+            foreach (var competency in player.Competencies)
+            {
+                selectListItems.Add(new SelectListItem() 
+                { 
+                    Value = competency.Topic.Id, 
+                    Text = competency.Topic.DisplayName
+                });
+            }
+            return selectListItems;
+
         }
     }
 
