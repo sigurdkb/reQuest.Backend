@@ -35,7 +35,18 @@ namespace reQuest.Backend.Services
         //TODO: Randomize team assignment
         public Team GetRandomTeam()
         {
-            return _context.Teams.FirstOrDefault();
+            var teams = _context.Teams
+                .Include(t => t.Players);
+            var smallestTeam = teams.FirstOrDefault();
+                
+            foreach (var team in teams)
+            {
+                if (team.Players.Count < smallestTeam.Players.Count)
+                {
+                    smallestTeam = team;
+                }
+            }
+            return smallestTeam;
         }
 
         public bool PlayerExists(string externalId)

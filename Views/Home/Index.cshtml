@@ -1,13 +1,10 @@
-@model IEnumerable<QuestViewModel>
-@{ ViewBag.Title = "Aktive forespørsler"; }
+@model HomeViewModel
+@{ ViewBag.Title = "Status"; }
 
     <div class="container">
         <div class="row">
             <div class="col-xs-8">
                 <h1>@ViewBag.Title</h1>
-            </div>
-            <div class="col-xs-4 text-right">
-                <h1>[ @Model.Count() ]</h1>
             </div>
         </div>
         <div class="row">
@@ -16,17 +13,46 @@
                     <div class="panel-heading">
 
                         <!--<canvas class="chart" id="cnv" width="400px" height="400px"></canvas>-->
+                        Highscores
+                    </div>
 
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <th>Plassering</th>
+                                <th>Navn</th>
+                                <th>Poeng</th>
+                            </thead>
+                        @for (var i = 0; i < Model.Teams.Count(); i++) {
+                        <tr class="success">
+                            <td>
+                                @(i+1)
+                            </td>
+                            <td>@Model.Teams[i].Name</td>
+                            <td>@Model.Teams[i].Score</td>
+                        </tr>
+                        }
+
+                        </table>
+
+                    </div>
+
+                </section>
+                <section class="panel panel-default">
+                    <div class="panel-heading">
+
+                        <!--<canvas class="chart" id="cnv" width="400px" height="400px"></canvas>-->
+                        Aktive forespørsler
+                    </div>
+
+                    <div class="panel-body">
                         <table class="table">
                             <thead>
                                 <th asp-loc-id="Title">Tittel</th>
                                 <th asp-loc-id="Topic.DisplayName">Emne</th>
                                 <th asp-loc-id="Ends">Tidsfrist</th>
                             </thead>
-                    </div>
-
-                    <div class="panel-body">
-                        @foreach (var quest in Model) {
+                        @foreach (var quest in Model.Quests) {
                         <tr class="success">
                             <td>@quest.Title</td>
                             <td>@quest.Topic.DisplayName</td>
@@ -43,4 +69,4 @@
     </div>
 
 
-    <script src="~/js/showChart.js"></script>
+    <!--<script src="~/js/showChart.js"></script>-->

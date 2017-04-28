@@ -45,6 +45,26 @@ namespace reQuest.Backend.Controllers
 
             return View(viewModel.OrderBy(q => q.State));
         }
+        // GET: /quest/showall
+        [HttpGet("showall")]
+        public IActionResult ShowAll()
+        {
+            var id = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var currentPlayer = _repository.GetPlayerFromId(id);
+
+            var quests = _repository.GetQuests();
+            var viewModel = Mapper.Map<IEnumerable<QuestViewModel>>(quests);
+
+            //TODO: Implement in custom automapper value resolver https://github.com/AutoMapper/AutoMapper/wiki/Custom-value-resolvers
+            foreach (var questView in viewModel)
+            {
+                questView.IsOwner = false;
+                questView.IsWinner = false;
+                questView.Timeout = quests.SingleOrDefault(q => q.Id == questView.Id).Ends.Subtract(System.DateTime.UtcNow);
+            }
+
+            return View(viewModel.OrderBy(q => q.State));
+        }
 
         // GET: /quest/create
         [HttpGet("create")]

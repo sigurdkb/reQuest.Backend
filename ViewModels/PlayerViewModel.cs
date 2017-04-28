@@ -18,6 +18,7 @@ namespace reQuest.Backend.ViewModels
         public Team Team { get; set; }
         public List<CompetencyViewModel> Competencies { get; set; } = new List<CompetencyViewModel>();
         [Display(Name = "Poeng")]
+        [DisplayFormat(DataFormatString = "{0.n0}")]
         public double Score
         {
             get

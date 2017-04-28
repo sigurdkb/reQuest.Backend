@@ -3,13 +3,22 @@
 
 <h1>@ViewBag.Title</h1>
 <section class="panel panel-default">
-    <h3 class="panel-heading">@Model.Name</h3>
+    <h3 class="panel-heading">@Model.Name (@Model.Score poeng)</h3>
     <div class="panel-body">
         <form class="form-horizontal" method="POST" asp-antiforgery="true">
             <table class="table">
                 <tr>
                     <td><label asp-for="Email"></label></td>
                     <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <td><label asp-for="Team"></label></td>
+                    <td>@Model.Team.Name</td>
+                </tr>
+                <tr>
+                    <td><label>Aktiv</label></td>
+                    <td><label>Emne</label></td>
+                    <td><label>Poeng</label></td>
                 </tr>
                 @for (var i = 0; i < Model.Competencies.Count(); i++) {
                 <tr>
@@ -18,6 +27,7 @@
                         <input asp-for="@Model.Competencies[i].Id" type="hidden"/>
                     </td>
                     <td>@Model.Competencies[i].TopicDisplayName</td>
+                    <td>@Model.Competencies[i].Score</td>
                 </tr>
                 }
             </table>
