@@ -1,0 +1,22 @@
+@model IEnumerable<QuestViewModel>
+
+@{
+    ViewBag.Title = "Alle forespørsler";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8">
+            <h1>@ViewBag.Title</h1>
+        </div>
+        <!--<div class="col-xs-4 text-right">
+            <a class="btn btn-lg btn-primary" asp-action="Create">Ny...</a>
+        </div>    -->
+    </div>
+</div>
+
+@foreach (var quest in Model)
+{
+    @Html.Partial("_QuestSummary", quest)
+}
+

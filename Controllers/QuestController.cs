@@ -52,6 +52,11 @@ namespace reQuest.Backend.Controllers
             var id = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
             var currentPlayer = _repository.GetPlayerFromId(id);
 
+            if (!currentPlayer.Email.Equals("sigurd.k.brinch@uia.no"))
+            {
+                return Unauthorized();
+            }
+
             var quests = _repository.GetQuests();
             var viewModel = Mapper.Map<IEnumerable<QuestViewModel>>(quests);
 

@@ -19,7 +19,7 @@ namespace reQuest.Backend.Services
         Topic GetTopicFromId(string id);
         bool TopicExists(string id);
         void AddTopic(Topic topic);
-        IEnumerable<Quest> GetQuests(QuestState stateFilter = QuestState.Active);
+        IEnumerable<Quest> GetQuests(QuestState stateFilter = (QuestState.Active | QuestState.Done | QuestState.TimedOut | QuestState.Approved));
         IEnumerable<Quest> GetPlayerQuests(Player player);
         Quest GetQuest(string id);
         void AddQuest(Quest quest);
